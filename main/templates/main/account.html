@@ -1,0 +1,41 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <div class="row">
+
+        <div class="col s12, m8, l8">
+            <h3>{{user.username}}</h3>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+    <h5>Albums Rated</h5>
+     <ul class="collection">
+      {% for a in albums %}
+          <li class="collection-item"><b>{{a.album_name}}</b></li>
+           {% for t in tracks %}
+           <!-- t.album_name references an album object, must be returned in stringformat -->
+            {% ifequal t.album_name|stringformat:"s" a.album_name %}
+              <li>{{t.track_name}}</li>
+            {% endifequal %}
+       
+          {% endfor %}
+      {% endfor %}
+
+      </ul>
+      <div class="col s3">
+         
+      </div>
+
+      <div class="col s9">
+          
+      </div>
+
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,64 @@
+<head>
+{% load static %}
+<link href="{% static 'tiny/css/prism.css' %}" rel="stylesheet">
+<!-- Compiled and minified CSS -->
+<link href="{% static 'main/css/materialize.css' %}" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<style>
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#0C9;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+	margin-top:22px;
+}
+
+</style>
+</head>
+
+<body>
+
+ {% include "main/includes/navbar.html" %}
+
+ {% include "main/includes/messages.html" %}
+
+<script src="{% static 'assets/js/bootstrap.js' %}"></script>
+<script src="{% static 'assets/js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.bootstrap.modal.forms.js' %}"></script>
+
+
+    {% block content %}
+    {% endblock %}
+
+
+</body>
+
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2020 Michael Sheroubi
+    <a class="grey-text text-lighten-4 right" href="https://msheroubi.github.io">More about me</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="{% static 'tinymce/js/prism.js' %}"></script>

@@ -1,0 +1,30 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <div class="row">
+        {% for album, slug in albums.items %}
+
+            <div class="col s12 m6 l4">
+                <a href="{{slug}}", style="color:#000">
+                    <div class="card hoverable">
+                        <div class="card-content">
+                            <div class="card-title">{{album.album_name}}</div>
+                            <img class="activator" src="{{album.album_cover_url}}" style="width:285px;height:285px">
+                            <p>{{album.artist_name}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    
+
+    </div>
+</div>
+{% if user.is_authenticated %}
+  <a href="addalbum" class="float">
+    <i class="fa fa-plus my-float" style="font-size:240%">+</i>
+  </a>
+{% endif %}
+{% endblock %}

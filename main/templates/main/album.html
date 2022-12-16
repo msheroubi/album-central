@@ -1,0 +1,79 @@
+{% extends "main/header.html" %}
+
+{% block extra_js %}
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $("#ratealbum").modalForm({
+        formURL: "{% url 'main:ratealbum' %}"
+    });
+
+});
+</script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+      <br>
+      <img src={{album.album_cover_url}} style="float:left" width="200" height="200">
+        <div class="col s12, m8, l8">
+            <h3>{{album.album_name}}</h3>
+            <h5><b><a href="{{artist.artist_slug}}">{{artist.artist_name}}</a></b></h5>
+            <p style="font-size:80%">Published {{album.release_date}}</p>
+        </div>
+
+{% if user.is_authenticated %}
+<br>
+<br>
+<a href="ratealbum" class="waves-effect waves-light btn"><i class="material-icons right">star_border</i>Rate</a>
+<button id="ratealbum" class="btn btn-primary" type="button" name="button">Create book</button>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      
+
+    </div>
+  </div>
+</div>
+
+{% endif %}
+    </div>
+
+    <div class="row">
+
+      <div class="col s3">
+        <h6>Rating: {{score}}</h6>
+
+          <ul class="collection">
+          	{% for ele in tracks %}
+		    <a href="{{ele.track_slug}}"><li class="collection-item avatar">
+		      <img src="{{album.album_cover_url}}" alt="" class="circle">
+		      <span ="title">{{ele.track_name|safe}}</span>
+		      <p><br>
+		      </p>
+		      <a class="secondary-content"><i class="material-icons"></i>{{ele.track_number|safe}}</a>
+		    </li> </a>
+		    {% endfor %}
+		  </ul>
+
+      </div>
+
+      <div class="col s9">
+           <p>{{album.album_description|safe}}</p>
+      </div>
+
+    </div>
+
+</div>
+{% if user.is_authenticated %}
+  <a href="updatealbum/{{album.album_slug}}" class="float">
+    <i class="fa fa-plus my-float" style="font-size:250%">#</i>
+  </a>
+{% endif %}
+
+
+{% endblock %}

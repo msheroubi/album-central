@@ -1,0 +1,15 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+<div class="container">
+{% if user.is_authenticated %}
+  <form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <br>
+    <button class="btn" type="submit">Add Album</button>
+  </form>
+{% endif %}
+</div>
+{% endblock %}

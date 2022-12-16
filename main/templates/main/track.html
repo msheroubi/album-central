@@ -1,0 +1,49 @@
+{% extends "main/header.html" %}
+
+{% block content %}
+
+<div class="container">
+<br> 
+<a href="{{album.album_slug}}"><img src={{album.album_cover_url}} style="float:left" width="200" height="200"></a>
+    <div class="row">
+
+        <div class="col s12, m8, l8">
+            <a href="{{album.album_slug}}" style="font-size:100%"><b>{{album.album_name}}</b></a>
+            <h4>{{track.track_name|safe}}</h4>
+            <h5><b><a href="{{artist.artist_slug}}">{{artist.artist_name}}</a></b></h5>
+            <p style="font-size:80%">Published {{album.release_date}}</p>
+        </div>
+{% if user.is_authenticated %}
+<br><br>
+<a href="ratealbum/{{album.album_slug}}" class="waves-effect waves-light btn"><i class="material-icons right">star_border</i>Rate</a>
+{% endif %}
+    </div>
+
+    <div class="row">
+
+      <div class="col s3">
+        <h6>Rating: {{score}}</h6>
+
+          <ul class="collection">
+            {% for ele in tracks %}
+            <a href="{{ele.track_slug}}"><li class="collection-item avatar">
+              <img src="{{album.album_cover_url}}" alt="" class="circle">
+              <span ="title">{{ele.track_name|safe}}</span>
+              <p><br>
+              </p>
+              <a class="secondary-content"><i class="material-icons">{{ele.track_number}}</i></a>
+            </li> </a>
+            {% endfor %}
+          </ul>
+
+      </div>
+
+      <div class="col s9">
+           {{track.track_lyrics|safe|linebreaks}}
+      </div>
+
+    </div>
+          
+</div>
+
+{% endblock %}
